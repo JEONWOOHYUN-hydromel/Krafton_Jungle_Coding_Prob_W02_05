@@ -73,8 +73,6 @@ def rotate_matrix_90(matrix):
     if n%2:
         center = n//2
         rotated[center][center] = matrix[center][center]
-        
-        print(n, n%2, center)
 
     return rotated
 
