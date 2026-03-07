@@ -60,7 +60,7 @@ def rotate_matrix_90(matrix):
         max_n = n-1-(2*i)
         for j in range(max_n): 
             #좌
-            rotated[i+j][i] = matrix[max_n][i+j]
+            rotated[i+j][i] = matrix[max_n+i][i+j]
             #하
             rotated[max_n+i][i+j] = matrix[i+max_n-j][i+max_n]
             #우
@@ -70,9 +70,11 @@ def rotate_matrix_90(matrix):
         
         i += 1
         try_num -= 1
-    if n%2 == 1:
-        center = n//2+1
+    if n%2:
+        center = n//2
         rotated[center][center] = matrix[center][center]
+        
+        print(n, n%2, center)
 
     return rotated
 
