@@ -1,7 +1,7 @@
 # 배열 - 평균은 넘겠지 (백준 브론즈1)
 # 문제 링크: https://www.acmicpc.net/problem/4344
 case_num = int(input())
-for i in range(n):
+for i in range(case_num):
     arr = list(map(int, input().split()))
     
     score_num = arr.pop(0)
