@@ -26,11 +26,11 @@ def dfs(cur, total):
             dfs(i, total+costs[cur][i])
             route.pop()
             visited[i] = False
-            
+
 visited[0] = True
 route.append(0)
 dfs(0,0)
-print(min_cost)
+print(min_cost) 
 
 
 
