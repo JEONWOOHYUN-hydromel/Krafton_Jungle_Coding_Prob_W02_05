@@ -1,5 +1,7 @@
 # 위상정렬 - 작업 (백준 골드4)
 # 문제 링크: https://www.acmicpc.net/problem/2056
+
+#시뮬레이션 방법
 import sys
 input = sys.stdin.readline
 
@@ -62,3 +64,44 @@ while exe_nod:
 
 print(clock)
     
+#동적계획법
+import sys
+input = sys.stdin.readline
+
+from collections import deque
+
+n = int(input())
+
+nod = {}
+for i in range(n):
+    nod[i] = [0, 0, []]   # 0: 작업시간, 1: 진입차수, 2: 내가 가리키는 노드들
+
+que = deque()
+dq = [0]* (n)
+for i in range(n):
+    info = list(map(int, input().split()))
+    
+    #작업 시간
+    nod[i][0] = info[0]
+
+    #선행 작업 수
+    num_job = info[1]
+    nod[i][1] = num_job
+    if num_job == 0:
+        dq[i] = nod[i][0]
+        que.append(i)
+
+    #선행 작업들의 리스트에 나 등록
+    for j in range(num_job):
+        nod[info[j+2]-1][2].append(i)   # 0 ~ n-1 번 노드
+
+#위상정렬
+while que:
+    cur_nod = que.popleft()
+    for nxt_nod in nod[cur_nod][2]:
+        nod[nxt_nod][1] -= 1
+        if nod[nxt_nod][1] == 0:
+            que.append(nxt_nod)
+        dq[nxt_nod] = max(dq[nxt_nod], dq[cur_nod] + nod[nxt_nod][0])
+
+print(max(dq))
