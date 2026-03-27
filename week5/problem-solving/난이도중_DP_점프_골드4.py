@@ -8,15 +8,6 @@ INF = 10001
 num_stone, num_small = map(int, input().split())
 small = set(int(input()) for _ in range(num_small))
 
-#lst_max_v
-lst_max_v = [(4,2)]
-newmax = 4
-add = 2
-while newmax < num_stone:
-    add+=1
-    newmax += add
-    lst_max_v.append((newmax, add))
-
 limit = int((2 * num_stone) ** 0.5) + 2
 
 dp = [{} for _ in range(num_stone + 1)]
